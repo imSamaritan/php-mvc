@@ -43,5 +43,5 @@ if (method_exists($controller, $method) === false) {
 #Instantiate constructor object instance 
 $controller_instance = new $controller;
 
-#Run a method from the instance 
+#Run a method from the constructor instance 
 $controller_instance->$method();
