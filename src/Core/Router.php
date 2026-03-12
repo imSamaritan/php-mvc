@@ -15,7 +15,7 @@ class Router
   public function match(string $url_path): array | false
   {
     $url_path = strtolower($url_path);
-    $url_path = rtrim($url_path);
+    $url_path = rtrim($url_path, "/");
 
     foreach ($this->routes as $route) {
       if ($route["path"] === $url_path) {
