@@ -9,12 +9,17 @@ $url_path = parse_url($_SERVER["REQUEST_URI"], 5);
 require __DIR__ . "/src/autoload.php";
 
 #Instantiate router object
-$router = new Core\Router;
+$router = new Core\Router();
 
 #Add routes into a routing table
+// Home
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/home/index", ["controller" => "home", "action" => "index"]);
+
+// Blogs
+$router->add("/blogs", ["controller" => "blogs", "action" => "index"]);
+$router->add("/blogs/index", ["controller" => "blogs", "action" => "index"]);
 
 #Matching incoming route path against the application routes
 $matched_route = $router->match($url_path);
@@ -37,11 +42,13 @@ if (class_exists($controller) === false) {
 
 #Check if a method exist inside the controller constructor
 if (method_exists($controller, $method) === false) {
-  exit("Method '{$method}', does not exists inside '{$controller}' constructor!");
+  exit(
+    "Method '{$method}', does not exists inside '{$controller}' constructor!"
+  );
 }
 
 #Instantiate constructor object instance
-$controller_instance = new $controller;
+$controller_instance = new $controller();
 
 #Run a method from the constructor instance
 $controller_instance->$method();
