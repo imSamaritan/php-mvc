@@ -13,14 +13,13 @@ $router = new Core\Router();
 
 #Add routes into a routing table
 // Home
-// $router->add("/", ["controller" => "home", "action" => "index"]);
-// $router->add("/home", ["controller" => "home", "action" => "index"]);
-// $router->add("/home/index", ["controller" => "home", "action" => "index"]);
+$router->add("/", ["controller" => "home", "action" => "index"]);
+$router->add("/home", ["controller" => "home", "action" => "index"]);
 
-// // Blogs
-// $router->add("/blogs", ["controller" => "blogs", "action" => "index"]);
-// $router->add("/blogs/index", ["controller" => "blogs", "action" => "index"]);
+// Blogs
+$router->add("/blogs", ["controller" => "blogs", "action" => "index"]);
 
+// Dynamic 
 $router->add("/{controller}/{action}");
 
 #Matching incoming route path against the application routes
