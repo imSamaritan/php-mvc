@@ -15,11 +15,13 @@ class Router
   public function match(string $url_path): array|false
   {
     $url_path = strtolower($url_path);
-    $url_path = rtrim($url_path, "/");
+    $url_path = trim($url_path, "/");
 
     foreach ($this->routes as $route) {
-      if ($route["path"] === $url_path) {
-        return $route["params"];
+      $pattern = $this->createMatchPattern($route["path"]);
+      if (preg_match($pattern, $url_path, $matches)) {
+        $params = array_filter($matches, "is_string", 2); //2 ARRRAY_FILTER_USE_KEY
+        return $params;
       }
     }
 
