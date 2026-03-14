@@ -38,6 +38,12 @@ class Router
       if (preg_match($pattern, $segment, $matches)) {
         return "(?<" . $matches[1] . ">[a-z]+)";
       }
+
+      $pattern = "#^\{([a-z][a-z]+):(.+)\}$#";
+      if (preg_match($pattern, $segment, $matches)) {
+        return "(?<" . $matches[1] . ">" . $matches[2] . ")";
+      }
+
       return $segment;
     }, $route_segments);
 
