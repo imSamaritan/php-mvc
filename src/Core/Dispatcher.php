@@ -48,8 +48,6 @@ class Dispatcher
     $method_name = str_replace("-", "", $method_name);
     $method_name = lcfirst($method_name);
 
-    echo $method_name;
-
     return $method_name;
   }
 }
