@@ -24,6 +24,7 @@ $router->add("/{controller:home|blogs}", [
 ]);
 
 // Dynamic
+$router->add("/{controller:moderator}/{action:print-role}", ["namespace" => "role"]);
 $router->add("/{controller}/{action}");
 
 # Instantiate dispatcher instance
