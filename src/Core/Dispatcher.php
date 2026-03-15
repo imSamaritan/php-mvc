@@ -20,7 +20,7 @@ class Dispatcher
     $controller = $namespace . ucwords($matched_route["controller"]);
 
     #Get action name as a method
-    $method = $matched_route["action"];
+    $method = $this->getMethodName($matched_route);
 
     #Check if a class does not exists, then exit if it true
     if (class_exists($controller) === false) {
@@ -39,5 +39,15 @@ class Dispatcher
 
     #Run a method from the constructor instance
     $controller_instance->$method();
+  }
+
+  private function getMethodName(array $params): string
+  {
+    $method_name = strtolower($params["action"]);
+    $method_name = ucwords($method_name, "-");
+    $method_name = str_replace("-", "", $method_name);
+    $method_name = lcfirst($method_name);
+
+    return $method_name;
   }
 }

@@ -36,7 +36,7 @@ class Router
     $route_segments = array_map(function (string $segment): string {
       $pattern = "#^\{([a-z][a-z]+)\}$#";
       if (preg_match($pattern, $segment, $matches)) {
-        return "(?<" . $matches[1] . ">[a-z]+)";
+        return "(?<" . $matches[1] . ">[a-z-]+)";
       }
 
       $pattern = "#^\{([a-z][a-z]+):(.+)\}$#";
