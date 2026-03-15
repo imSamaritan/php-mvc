@@ -5,22 +5,22 @@ namespace Core;
 
 class Dispatcher
 {
+  private string $namespace = "App\Controllers";
   public function __construct(private Router $router) {}
   public function handle(string $url_path): void
   {
     #Matching incoming route path against the application routes
-    $matched_route = $this->router->match($url_path);
+    $params = $this->router->match($url_path);
 
-    if ($matched_route === false) {
+    if ($params === false) {
       exit("Resource '{$url_path}', was not found!");
     }
 
     #Get controller name
-    $namespace = "App\Controllers\\";
-    $controller = $namespace . ucwords($matched_route["controller"]);
+    $controller = $this->getControllerName($params);
 
     #Get action name as a method
-    $method = $this->getMethodName($matched_route);
+    $method = $this->getMethodName($params);
 
     #Check if a class does not exists, then exit if it true
     if (class_exists($controller) === false) {
@@ -49,5 +49,14 @@ class Dispatcher
     $method_name = lcfirst($method_name);
 
     return $method_name;
+  }
+
+  private function getControllerName(array $params): string
+  {
+    $controller_name = strtolower($params["controller"]);
+    $controller_name = ucwords($controller_name, "-");
+    $controller_name = str_replace("-", "", $controller_name);
+
+    return $this->namespace . "\\" . $controller_name;
   }
 }
