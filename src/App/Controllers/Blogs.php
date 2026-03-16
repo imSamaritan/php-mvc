@@ -3,28 +3,34 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 use App\Models\Blog;
+use Core\Viewer;
 
 class Blogs
 {
   private Blog $blog;
+  private Viewer $viewer;
+
   public function __construct()
   {
     $this->blog = new Blog();
+    $this->viewer = new Viewer();
   }
 
   public function index(): void
   {
-    echo "Blogs";
+    #Get data
     $blogs = $this->blog->findAll();
-    echo "<pre>";
-    print_r($blogs);
+
+    #Render data
+    echo $this->viewer->render("blogs/index", ["blogs" => $blogs]);
   }
 
   public function show(int $id = 1): void
   {
-    echo "Blog #{$id}";
+    #Get data
     $blog = $this->blog->find($id);
-    echo "<pre>";
-    print_r($blog);
+
+    #Render single post
+    echo $this->viewer->render("blogs/show", ["blog" => $blog]);
   }
 }
