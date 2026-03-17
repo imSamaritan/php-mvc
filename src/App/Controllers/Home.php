@@ -16,6 +16,7 @@ class Home
 
   public function index(): void
   {
+    echo $this->viewer->render("shared/header", ["title" => "Home"]);
     echo $this->viewer->render("home/index");
   }
 }
