@@ -1,11 +1,21 @@
-<?php 
+<?php
 declare(strict_types=1);
 
 namespace App\Controllers;
 
-class Home {
-  public function index(): void 
+use Core\Viewer;
+
+class Home
+{
+  private Viewer $viewer;
+
+  public function __construct()
   {
-    echo "Home/Index";
+    $this->viewer = new Viewer();
+  }
+
+  public function index(): void
+  {
+    echo $this->viewer->render("home/index");
   }
 }
