@@ -23,6 +23,7 @@ class Blogs
     
     echo $this->viewer->render("shared/header", ["title" => "Blogs"]);    
     echo $this->viewer->render("blogs/index", ["blogs" => $blogs]);
+    echo $this->viewer->render("shared/footer");
   }
 
   public function show(int $id = 1): void
@@ -31,5 +32,6 @@ class Blogs
     
     echo $this->viewer->render("shared/header", ["title" => "Blog #{$blog->id}"]);
     echo $this->viewer->render("blogs/show", ["blog" => $blog]);
+    echo $this->viewer->render("shared/footer");
   }
 }
