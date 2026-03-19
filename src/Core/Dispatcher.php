@@ -2,6 +2,8 @@
 declare(strict_types=1);
 
 namespace Core;
+use ReflectionMethod;
+use ReflectionType;
 
 class Dispatcher
 {
@@ -37,8 +39,11 @@ class Dispatcher
     #Instantiate constructor object instance
     $controller_instance = new $controller();
 
+    #Method arguments
+    $method_args = $this->getMethodArgs($controller, $method, $params);
+
     #Run a method from the constructor instance
-    $controller_instance->$method();
+    $controller_instance->$method(...$method_args);
   }
 
   private function getMethodName(array $params): string
@@ -63,4 +68,23 @@ class Dispatcher
 
     return $this->namespace . "\\" . $controller_name;
   }
+
+  private function getMethodArgs(
+    string $controller_name,
+    string $method_name,
+    array $params,
+  ): array {
+    $args = [];
+    $reflection = new ReflectionMethod($controller_name, $method_name);
+    $parameters = $reflection->getParameters();
+
+    foreach ($parameters as $parameter) {
+      $arg_name = $parameter->getName();
+      $args[$arg_name] = $params[$arg_name];
+    }
+
+    return $args;
+  }
+
+ 
 }
