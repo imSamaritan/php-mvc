@@ -80,11 +80,27 @@ class Dispatcher
 
     foreach ($parameters as $parameter) {
       $arg_name = $parameter->getName();
-      $args[$arg_name] = $params[$arg_name];
+      $arg_type = $parameter->getType();
+      $args[$arg_name] = $this->typeCastAndReturnValue(
+        $arg_type,
+        $params[$arg_name],
+      );
     }
 
     return $args;
   }
 
- 
+  private function typeCastAndReturnValue(
+    ReflectionType $type,
+    mixed $value,
+  ): mixed {
+    $type = (string) $type;
+    return match ($type) {
+      "int" => (int) $value,
+      "float" => (float) $value,
+      "object" => (object) $value,
+      "array" => (array) $value,
+      default => (string) $value,
+    };
+  }
 }

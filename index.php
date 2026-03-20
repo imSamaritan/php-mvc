@@ -22,4 +22,6 @@ $router->add("/{controller}/{action}");
 
 # Instantiate dispatcher instance
 $dispatcher = new Core\Dispatcher($router);
+
+#handle requests
 $dispatcher->handle($url_path);
