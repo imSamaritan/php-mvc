@@ -6,12 +6,7 @@ use App\Database;
 
 class Blog
 {
-  private Database $db;
-
-  public function __construct()
-  {
-    $this->db = Database::instance();
-  }
+  public function __construct(private Database $db) {}
 
   public function findAll(): array|false
   {
@@ -25,7 +20,7 @@ class Blog
 
     return false;
   }
-  
+
   public function find(int $id): object|false
   {
     $connection = $this->db->connect();
