@@ -2,6 +2,8 @@
 declare(strict_types=1);
 
 namespace Core;
+
+use ReflectionClass;
 use ReflectionMethod;
 use ReflectionType;
 
@@ -35,9 +37,12 @@ class Dispatcher
         "Method '{$method}', does not exists inside '{$controller}' constructor!"
       );
     }
+    
+    #Get Dependencies
+    $dependencies = $this->getDependencies($controller);
 
     #Instantiate constructor object instance
-    $controller_instance = new $controller();
+    $controller_instance = new $controller(...$dependencies);
 
     #Method arguments
     $method_args = $this->getMethodArgs($controller, $method, $params);
@@ -102,5 +107,20 @@ class Dispatcher
       "array" => (array) $value,
       default => (string) $value,
     };
+  }
+  
+  private function getDependencies(string $class): array {
+    $dependencies = [];
+    $reflection = new ReflectionClass($class);
+    $constructor = $reflection->getConstructor();
+    
+    if ($constructor != null) {
+      $parametersAsDependencies = $constructor->getParameters();
+      foreach($parametersAsDependencies as $dependency) {
+        $dependencyFromType = (string) $dependency->getType();
+        $dependencies[] = new $dependencyFromType();
+      }
+    }
+    return $dependencies;
   }
 }
