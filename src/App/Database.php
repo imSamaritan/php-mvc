@@ -10,35 +10,28 @@ use Exception;
 class Database
 {
   private ?PDO $pdo = null;
-  private static ?self $instance = null;
 
-  private function __construct() {}
-  private function __clone() {}
-  public function __wakeup()
-  {
-    throw new Exception("Cannot unserialize a singleton.");
-  }
-
-  public static function instance(): self
-  {
-    if (self::$instance === null) {
-      self::$instance = new self();
-    }
-    return self::$instance;
-  }
+  public function __construct(
+    private string $host = "localhost",
+    private string $user = "root",
+    private string $password = "617808",
+    private string $db_name = "blog",
+  ) {}
 
   public function connect(): PDO
   {
     if ($this->pdo === null) {
       try {
-        $dsn = "mysql:host=localhost;dbname=blog;";
-        $this->pdo = new PDO($dsn, "root", "617808", [
+        $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=UTF8";
+        $this->pdo = new PDO($dsn, $this->user, $this->password, [
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
           PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
         ]);
       } catch (PDOException $error) {
         $this->pdo = null;
-        throw new Exception("Database connection error: {$error->getMessage()}");
+        throw new Exception(
+          "Database connection error: {$error->getMessage()}",
+        );
       }
     }
     return $this->pdo;
