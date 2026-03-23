@@ -12,10 +12,10 @@ class Database
   private ?PDO $pdo = null;
 
   public function __construct(
-    private string $host = "localhost",
-    private string $user = "root",
-    private string $password = "617808",
-    private string $db_name = "blog",
+    private string|int $host,
+    private string $user,
+    private string $password,
+    private string $db_name,
   ) {}
 
   public function connect(): PDO
