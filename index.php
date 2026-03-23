@@ -23,6 +23,11 @@ $router->add("/{controller}/{action}");
 #Container instance
 $container = new Core\Container();
 
+#Add database object into a registry as the constructor is madeup of built in prop's types
+$container->save(App\Database::class, function () {
+  return new App\Database("localhost", "root", "617808", "blog");
+});
+
 # Instantiate dispatcher instance
 $dispatcher = new Core\Dispatcher($router, $container);
 
