@@ -104,19 +104,4 @@ class Dispatcher
       default => (string) $value,
     };
   }
-  
-  private function getDependencies(string $class): array {
-    $dependencies = [];
-    $reflection = new ReflectionClass($class);
-    $constructor = $reflection->getConstructor();
-    
-    if ($constructor != null) {
-      $parametersAsDependencies = $constructor->getParameters();
-      foreach($parametersAsDependencies as $dependency) {
-        $dependencyFromType = (string) $dependency->getType();
-        $dependencies[] = new $dependencyFromType();
-      }
-    }
-    return $dependencies;
-  }
 }
