@@ -3,14 +3,13 @@ declare(strict_types=1);
 
 namespace Core;
 
-use ReflectionClass;
 use ReflectionMethod;
 use ReflectionType;
 
 class Dispatcher
 {
   private string $namespace = "App\Controllers";
-  public function __construct(private Router $router) {}
+  public function __construct(private Router $router, private Container $container) {}
   public function handle(string $url_path): void
   {
     #Matching incoming route path against the application routes
@@ -37,12 +36,9 @@ class Dispatcher
         "Method '{$method}', does not exists inside '{$controller}' constructor!"
       );
     }
-    
-    #Get Dependencies
-    $dependencies = $this->getDependencies($controller);
 
     #Instantiate constructor object instance
-    $controller_instance = new $controller(...$dependencies);
+    $controller_instance = $this->container->get($controller);
 
     #Method arguments
     $method_args = $this->getMethodArgs($controller, $method, $params);

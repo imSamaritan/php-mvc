@@ -20,8 +20,11 @@ $router->add("/{controller:moderator}/{action:print-role}", ["namespace" => "rol
 $router->add("/{controller}/{action}/{id:\d+}");
 $router->add("/{controller}/{action}");
 
+#Container instance
+$container = new Core\Container();
+
 # Instantiate dispatcher instance
-$dispatcher = new Core\Dispatcher($router);
+$dispatcher = new Core\Dispatcher($router, $container);
 
 #handle requests
 $dispatcher->handle($url_path);
