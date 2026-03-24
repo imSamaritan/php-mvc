@@ -5,18 +5,22 @@ namespace Core;
 
 use ReflectionMethod;
 use ReflectionType;
+use Core\Exceptions\PageNotFoundException;
 
 class Dispatcher
 {
   private string $namespace = "App\Controllers";
-  public function __construct(private Router $router, private Container $container) {}
+  public function __construct(
+    private Router $router,
+    private Container $container,
+  ) {}
   public function handle(string $url_path): void
   {
     #Matching incoming route path against the application routes
     $params = $this->router->match($url_path);
 
     if ($params === false) {
-      exit("Resource '{$url_path}', was not found!");
+      throw new PageNotFoundException("Resource '{$url_path}', was not found!");
     }
 
     #Get controller name
