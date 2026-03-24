@@ -6,6 +6,8 @@ namespace Core;
 use ReflectionMethod;
 use ReflectionType;
 use Core\Exceptions\PageNotFoundException;
+use RuntimeException;
+use BadMethodCallException;
 
 class Dispatcher
 {
@@ -31,13 +33,15 @@ class Dispatcher
 
     #Check if a class does not exists, then exit if it true
     if (class_exists($controller) === false) {
-      exit("Constructor '{$controller}', is not defined or does not exists!");
+      throw new RuntimeException(
+        "Constructor '{$controller}', is not defined or does not exists!",
+      );
     }
 
     #Check if a method exist inside the controller constructor
     if (method_exists($controller, $method) === false) {
-      exit(
-        "Method '{$method}', does not exists inside '{$controller}' constructor!"
+      throw new BadMethodCallException(
+        "Method '{$method}', does not exists inside '{$controller}' constructor!",
       );
     }
 
