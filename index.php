@@ -16,7 +16,9 @@ $router = new Core\Router();
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/{controller:home|blogs}", ["action" => "index"]);
 // Dynamic
-$router->add("/{controller:moderator}/{action:print-role}", ["namespace" => "role"]);
+$router->add("/{controller:moderator}/{action:print-role}", [
+  "namespace" => "role",
+]);
 $router->add("/{controller}/{action}/{id:\d+}");
 $router->add("/{controller}/{action}");
 
@@ -24,9 +26,9 @@ $router->add("/{controller}/{action}");
 $container = new Core\Container();
 
 #Add database object into a registry as the constructor is madeup of built in prop's types
-// $container->save(App\Database::class, function () {
-//   return new App\Database("localhost", "root", "617808", "blog");
-// });
+$container->save(App\Database::class, function () {
+  return new App\Database("localhost", "root", "617808", "blog");
+});
 
 # Instantiate dispatcher instance
 $dispatcher = new Core\Dispatcher($router, $container);
