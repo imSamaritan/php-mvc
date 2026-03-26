@@ -9,16 +9,20 @@ if ($url_path === false) {
   throw new UnexpectedValueException("URL is malformed!!");
 }
 
-$show_errors = false;
+set_exception_handler(function ($exception) {
+  $show_errors = true;
 
-if ($show_errors) {
-  # Development
-  ini_set("display_errors", 1);
-} else {
-  # Production
-  ini_set("display_errors", 0);
-  require __DIR__ . "/views/500.php";
-}
+  if ($show_errors) {
+    # Development
+    ini_set("display_errors", 1);
+  } else {
+    # Production
+    ini_set("display_errors", 0);
+    require __DIR__ . "/views/500.php";
+  }
+  
+  throw $exception;
+});
 
 #Load modules
 require __DIR__ . "/src/autoload.php";
