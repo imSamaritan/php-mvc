@@ -9,6 +9,16 @@ if ($url_path === false) {
   throw new UnexpectedValueException("URL is malformed!!");
 }
 
+$show_errors = true;
+
+if ($show_errors) {
+  # Development
+  ini_set("display_errors", 1);
+} else {
+  # Production
+  ini_set("display_errors", 0);
+}
+
 #Load modules
 require __DIR__ . "/src/autoload.php";
 
