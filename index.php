@@ -5,6 +5,10 @@ declare(strict_types=1);
 #Get url path
 $url_path = parse_url($_SERVER["REQUEST_URI"], 5);
 
+if ($url_path === false) {
+  throw new UnexpectedValueException("URL is malformed!!");
+}
+
 #Load modules
 require __DIR__ . "/src/autoload.php";
 
