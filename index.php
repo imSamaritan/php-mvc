@@ -10,11 +10,13 @@ if ($url_path === false) {
 }
 
 set_exception_handler(function ($exception) {
-  $show_errors = true;
+  $show_errors = false;
 
   if ($exception instanceof Core\Exceptions\PageNotFoundException) {
+    $view = "404";
     http_response_code(404);
   } else {
+    $view = "500";
     http_response_code(500);
   }
 
@@ -24,7 +26,7 @@ set_exception_handler(function ($exception) {
   } else {
     # Production
     ini_set("display_errors", 0);
-    require __DIR__ . "/views/500.php";
+    require __DIR__ . "/views/{$view}.php";
   }
 
   throw $exception;
