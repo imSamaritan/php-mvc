@@ -9,7 +9,7 @@ if ($url_path === false) {
   throw new UnexpectedValueException("URL is malformed!!");
 }
 
-$show_errors = true;
+$show_errors = false;
 
 if ($show_errors) {
   # Development
@@ -17,6 +17,7 @@ if ($show_errors) {
 } else {
   # Production
   ini_set("display_errors", 0);
+  require __DIR__ . "/views/500.php";
 }
 
 #Load modules
