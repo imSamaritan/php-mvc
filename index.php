@@ -23,9 +23,11 @@ set_exception_handler(function ($exception) {
   if ($show_errors) {
     # Development
     ini_set("display_errors", 1);
+    ini_set("log_errors", 0);
   } else {
     # Production
     ini_set("display_errors", 0);
+    ini_set("log_errors", 1);
     require __DIR__ . "/views/{$view}.php";
   }
 
