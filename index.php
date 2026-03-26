@@ -12,6 +12,12 @@ if ($url_path === false) {
 set_exception_handler(function ($exception) {
   $show_errors = true;
 
+  if ($exception instanceof Core\Exceptions\PageNotFoundException) {
+    http_response_code(404);
+  } else {
+    http_response_code(500);
+  }
+
   if ($show_errors) {
     # Development
     ini_set("display_errors", 1);
@@ -20,7 +26,7 @@ set_exception_handler(function ($exception) {
     ini_set("display_errors", 0);
     require __DIR__ . "/views/500.php";
   }
-  
+
   throw $exception;
 });
 
