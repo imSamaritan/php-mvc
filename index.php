@@ -9,8 +9,13 @@ if ($url_path === false) {
   throw new UnexpectedValueException("URL is malformed!!");
 }
 
+# Throw errors as exception
+set_error_handler(function(int $errno, string $errmsg, string $errfile, int $errline) {
+  throw new ErrorException($errmsg, 0, $errno, $errfile, $errline);
+});
+
 set_exception_handler(function ($exception) {
-  $show_errors = false;
+  $show_errors = true;
 
   if ($exception instanceof Core\Exceptions\PageNotFoundException) {
     $view = "404";
