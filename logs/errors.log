@@ -1,0 +1,54 @@
+[29-Mar-2026 16:07:26 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php\php-mvc\index.php:54
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\index.php on line 54
+[29-Mar-2026 16:07:26 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php\php-mvc\index.php(83): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
+[29-Mar-2026 16:10:31 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php\php-mvc\index.php:54
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\index.php on line 54
+[29-Mar-2026 16:10:31 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php\php-mvc\index.php(83): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
+[29-Mar-2026 16:21:50 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php\php-mvc\index.php:54
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\index.php on line 54
+[29-Mar-2026 16:21:51 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php\php-mvc\index.php(83): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
+[29-Mar-2026 16:22:21 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php\php-mvc\index.php:54
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\index.php on line 54
+[29-Mar-2026 16:22:21 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php\php-mvc\index.php(83): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
+[29-Mar-2026 16:23:32 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php\php-mvc\index.php:54
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\index.php on line 54
+[29-Mar-2026 16:23:32 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php\php-mvc\index.php(83): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
+[29-Mar-2026 16:24:20 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php\php-mvc\index.php:54
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\index.php on line 54
+[29-Mar-2026 16:24:20 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php\php-mvc\index.php(83): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25

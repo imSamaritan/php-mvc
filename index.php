@@ -2,20 +2,21 @@
 #Enable strict types
 declare(strict_types=1);
 
-#Get url path
-$url_path = parse_url($_SERVER["REQUEST_URI"], 5);
-
-if ($url_path === false) {
-  throw new UnexpectedValueException("URL is malformed!!");
-}
+#Load modules
+require __DIR__ . "/src/autoload.php";
 
 # Throw errors as exception
-set_error_handler(function(int $errno, string $errmsg, string $errfile, int $errline) {
+set_error_handler(function (
+  int $errno,
+  string $errmsg,
+  string $errfile,
+  int $errline,
+) {
   throw new ErrorException($errmsg, 0, $errno, $errfile, $errline);
 });
 
 set_exception_handler(function ($exception) {
-  $show_errors = true;
+  $show_errors = false;
 
   if ($exception instanceof Core\Exceptions\PageNotFoundException) {
     $view = "404";
@@ -23,6 +24,11 @@ set_exception_handler(function ($exception) {
   } else {
     $view = "500";
     http_response_code(500);
+  }
+
+  if ($exception instanceof Core\Exceptions\UrlMailformedException) {
+    $view = "malformed-url";
+    http_response_code(400);
   }
 
   if ($show_errors) {
@@ -33,14 +39,20 @@ set_exception_handler(function ($exception) {
     # Production
     ini_set("display_errors", 0);
     ini_set("log_errors", 1);
+    ini_set("error_log", __DIR__ . "/logs/errors.log");
     require __DIR__ . "/views/{$view}.php";
   }
 
   throw $exception;
 });
 
-#Load modules
-require __DIR__ . "/src/autoload.php";
+#Get url path
+$url_path = parse_url($_SERVER["REQUEST_URI"], 5);
+
+# Check if the url is malformed
+if ($url_path === false) {
+  throw new Core\Exceptions\UrlMailformedException("URL is malformed!!");
+}
 
 #Instantiate router object
 $router = new Core\Router();
