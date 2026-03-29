@@ -6,45 +6,9 @@ declare(strict_types=1);
 require __DIR__ . "/src/autoload.php";
 
 # Throw errors as exception
-set_error_handler(function (
-  int $errno,
-  string $errmsg,
-  string $errfile,
-  int $errline,
-) {
-  throw new ErrorException($errmsg, 0, $errno, $errfile, $errline);
-});
+set_error_handler("Core\ExceptionHandler::error");
 
-set_exception_handler(function ($exception) {
-  $show_errors = false;
-
-  if ($exception instanceof Core\Exceptions\PageNotFoundException) {
-    $view = "404";
-    http_response_code(404);
-  } else {
-    $view = "500";
-    http_response_code(500);
-  }
-
-  if ($exception instanceof Core\Exceptions\UrlMailformedException) {
-    $view = "malformed-url";
-    http_response_code(400);
-  }
-
-  if ($show_errors) {
-    # Development
-    ini_set("display_errors", 1);
-    ini_set("log_errors", 0);
-  } else {
-    # Production
-    ini_set("display_errors", 0);
-    ini_set("log_errors", 1);
-    ini_set("error_log", __DIR__ . "/logs/errors.log");
-    require __DIR__ . "/views/{$view}.php";
-  }
-
-  throw $exception;
-});
+set_exception_handler("Core\ExceptionHandler::exception");
 
 #Get url path
 $url_path = parse_url($_SERVER["REQUEST_URI"], 5);
