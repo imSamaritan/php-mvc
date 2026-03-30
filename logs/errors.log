@@ -48,3 +48,33 @@ Stack trace:
 #0 C:\xampp\htdocs\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
 #1 {main}
   thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 11:10:28 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 11:13:02 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined variable $router in C:\xampp\htdocs\php-mvc\index.php:31
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(31): Core\ExceptionHandler::error(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 31)
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 31
+[30-Mar-2026 11:13:03 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined variable $router in C:\xampp\htdocs\php-mvc\index.php:31
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(31): Core\ExceptionHandler::error(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 31)
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 31
+[30-Mar-2026 11:14:43 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(36): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 11:14:57 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined variable $container in C:\xampp\htdocs\php-mvc\index.php:26
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(26): Core\ExceptionHandler::error(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 26)
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 26
+[30-Mar-2026 11:14:57 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined variable $container in C:\xampp\htdocs\php-mvc\index.php:26
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(26): Core\ExceptionHandler::error(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 26)
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 26
