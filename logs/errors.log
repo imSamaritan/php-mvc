@@ -1,42 +1,50 @@
-[29-Mar-2026 19:59:18 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: require(C:\xampp\htdocs\php\php-mvc/src/Core/Route.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\php\php-mvc\src\autoload.php:9
+[30-Mar-2026 10:07:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Typed static property Core\ExceptionHandler::$viewer must not be accessed before initialization in C:\xampp\htdocs\php-mvc\src\Core\ExceptionHandler.php:54
 Stack trace:
-#0 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): Core\ExceptionHandler::error(2, 'require(C:\\xamp...', 'C:\\xampp\\htdocs...', 9)
-#1 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): require()
-#2 C:\xampp\htdocs\php\php-mvc\index.php(22): load('Core\\Route')
-#3 {main}
-  thrown in C:\xampp\htdocs\php\php-mvc\src\autoload.php on line 9
-[29-Mar-2026 19:59:19 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: require(C:\xampp\htdocs\php\php-mvc/src/Core/Route.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\php\php-mvc\src\autoload.php:9
-Stack trace:
-#0 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): Core\ExceptionHandler::error(2, 'require(C:\\xamp...', 'C:\\xampp\\htdocs...', 9)
-#1 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): require()
-#2 C:\xampp\htdocs\php\php-mvc\index.php(22): load('Core\\Route')
-#3 {main}
-  thrown in C:\xampp\htdocs\php\php-mvc\src\autoload.php on line 9
-[29-Mar-2026 20:13:14 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: require(C:\xampp\htdocs\php\php-mvc/src/Core/Route.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\php\php-mvc\src\autoload.php:9
-Stack trace:
-#0 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): Core\ExceptionHandler::error(2, 'require(C:\\xamp...', 'C:\\xampp\\htdocs...', 9)
-#1 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): require()
-#2 C:\xampp\htdocs\php\php-mvc\index.php(22): load('Core\\Route')
-#3 {main}
-  thrown in C:\xampp\htdocs\php\php-mvc\src\autoload.php on line 9
-[29-Mar-2026 20:13:14 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: require(C:\xampp\htdocs\php\php-mvc/src/Core/Route.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\php\php-mvc\src\autoload.php:9
-Stack trace:
-#0 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): Core\ExceptionHandler::error(2, 'require(C:\\xamp...', 'C:\\xampp\\htdocs...', 9)
-#1 C:\xampp\htdocs\php\php-mvc\src\autoload.php(9): require()
-#2 C:\xampp\htdocs\php\php-mvc\index.php(22): load('Core\\Route')
-#3 {main}
-  thrown in C:\xampp\htdocs\php\php-mvc\src\autoload.php on line 9
-[29-Mar-2026 20:13:27 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
-Stack trace:
-#0 C:\xampp\htdocs\php\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
+#0 [internal function]: Core\ExceptionHandler::exception(Object(Core\Exceptions\UrlMailformedException))
 #1 {main}
-  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
-[29-Mar-2026 20:13:30 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php\php-mvc\index.php:18
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\ExceptionHandler.php on line 54
+[30-Mar-2026 10:11:55 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php-mvc\index.php:18
 Stack trace:
 #0 {main}
-  thrown in C:\xampp\htdocs\php\php-mvc\index.php on line 18
-[29-Mar-2026 20:13:30 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 18
+[30-Mar-2026 10:12:02 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
 Stack trace:
-#0 C:\xampp\htdocs\php\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
+#0 C:\xampp\htdocs\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
 #1 {main}
-  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 10:12:12 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php-mvc\index.php:18
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 18
+[30-Mar-2026 10:12:12 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 10:12:17 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php-mvc\index.php:18
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 18
+[30-Mar-2026 10:20:47 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php-mvc\index.php:18
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 18
+[30-Mar-2026 10:20:47 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 10:21:08 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\UrlMailformedException: URL is malformed!! in C:\xampp\htdocs\php-mvc\index.php:18
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\php-mvc\index.php on line 18
+[30-Mar-2026 10:21:08 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 10:21:28 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(47): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
