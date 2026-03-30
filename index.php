@@ -24,9 +24,6 @@ $dotEnv = new Core\DotEnv();
 # Read the .env file and populate $_ENV superglobal
 $dotEnv->load(__DIR__ . "/.env");
 
-print "<pre>";
-print_r($_ENV);
-
 # Router
 $router = require __DIR__ . "/config/routes.php";
 

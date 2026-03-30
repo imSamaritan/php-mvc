@@ -153,3 +153,13 @@ Stack trace:
 #0 C:\xampp\htdocs\php-mvc\index.php(40): Core\Dispatcher->handle('/.well-known/ap...')
 #1 {main}
   thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 12:06:32 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(40): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
+[30-Mar-2026 12:06:47 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/.well-known/appspecific/com.chrome.devtools.json', was not found! in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php-mvc\index.php(37): Core\Dispatcher->handle('/.well-known/ap...')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-mvc\src\Core\Dispatcher.php on line 25
