@@ -21,13 +21,8 @@ if ($url_path === false) {
 # Router
 $router = require __DIR__ . "/config/routes.php";
 
-#Container instance
-$container = new Core\Container();
-
-#Add database object into a registry as the constructor is madeup of built in prop's types
-$container->save(App\Database::class, function () {
-  return new App\Database("localhost", "root", "617808", "blog");
-});
+# Container (service)
+$container = require __DIR__ . "/config/services.php";
 
 # Instantiate dispatcher instance
 $dispatcher = new Core\Dispatcher($router, $container);
