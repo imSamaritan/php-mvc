@@ -21,8 +21,8 @@ class ExceptionHandler
 
   public static function exception($exception): void
   {
-    $show_errors = false;
-    $viewer = new Viewer;
+    $show_errors = $_ENV["SHOW_ERROR"] ?? true;
+    $viewer = new Viewer();
 
     if ($exception instanceof PageNotFoundException) {
       $view = "404";
@@ -36,9 +36,9 @@ class ExceptionHandler
       $view = "malformed-url";
       $code = 400;
     }
-    
+
     http_response_code($code);
-    
+
     if ($show_errors) {
       # Development
       ini_set("display_errors", 1);
@@ -49,7 +49,9 @@ class ExceptionHandler
       ini_set("log_errors", 1);
       ini_set("error_log", dirname(__DIR__, 2) . "/logs/errors.log");
 
-      echo $viewer->render("shared/header", ["title" => "Error | {$code} status code"]);
+      echo $viewer->render("shared/header", [
+        "title" => "Error | {$code} status code",
+      ]);
       echo $viewer->render($view, ["status_code" => $code]);
       echo $viewer->render("shared/footer");
     }
