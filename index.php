@@ -10,6 +10,12 @@ set_error_handler("Core\ExceptionHandler::error");
 
 set_exception_handler("Core\ExceptionHandler::exception");
 
+# Env Instance
+$dotEnv = new Core\DotEnv();
+
+# Read the .env file and populate $_ENV superglobal
+$dotEnv->load(__DIR__ . "/.env");
+
 #Get url path
 $url_path = parse_url($_SERVER["REQUEST_URI"], 5);
 
@@ -17,12 +23,6 @@ $url_path = parse_url($_SERVER["REQUEST_URI"], 5);
 if ($url_path === false) {
   throw new Core\Exceptions\UrlMailformedException("URL is malformed!!");
 }
-
-# Env Instance
-$dotEnv = new Core\DotEnv();
-
-# Read the .env file and populate $_ENV superglobal
-$dotEnv->load(__DIR__ . "/.env");
 
 # Router
 $router = require __DIR__ . "/config/routes.php";
