@@ -2,8 +2,11 @@
 #Enable strict types
 declare(strict_types=1);
 
+# Application root path
+define("ROOT_PATH", dirname(__DIR__, 1));
+
 #Load modules
-require __DIR__ . "/src/autoload.php";
+require ROOT_PATH . "/src/autoload.php";
 
 # Throw errors as exception
 set_error_handler("Core\ExceptionHandler::error");
@@ -14,7 +17,7 @@ set_exception_handler("Core\ExceptionHandler::exception");
 $dotEnv = new Core\DotEnv();
 
 # Read the .env file and populate $_ENV superglobal
-$dotEnv->load(__DIR__ . "/.env");
+$dotEnv->load(ROOT_PATH . "/.env");
 
 #Get url path
 $url_path = parse_url($_SERVER["REQUEST_URI"], 5);
@@ -25,10 +28,10 @@ if ($url_path === false) {
 }
 
 # Router
-$router = require __DIR__ . "/config/routes.php";
+$router = require ROOT_PATH . "/config/routes.php";
 
 # Container (service)
-$container = require __DIR__ . "/config/services.php";
+$container = require ROOT_PATH . "/config/services.php";
 
 # Instantiate dispatcher instance
 $dispatcher = new Core\Dispatcher($router, $container);
