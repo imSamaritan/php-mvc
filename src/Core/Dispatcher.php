@@ -70,12 +70,14 @@ class Dispatcher
     $controller_name = strtolower($params["controller"]);
     $controller_name = ucwords($controller_name, "-");
     $controller_name = str_replace("-", "", $controller_name);
-
-    if (array_key_exists("namespace", $params)) {
-      $this->namespace .= "\\" . ucwords($params["namespace"]);
+    
+    $namespace = $this->namespace;
+    
+    if (isset($params["namespace"])) {
+      $namespace .= "\\" . ucwords($params["namespace"]);
     }
 
-    return $this->namespace . "\\" . $controller_name;
+    return $namespace . "\\" . $controller_name;
   }
 
   private function getMethodArgs(

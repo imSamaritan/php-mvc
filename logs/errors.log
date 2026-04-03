@@ -1,0 +1,5 @@
+[03-Apr-2026 12:37:56 Europe/Berlin] PHP Fatal error:  Uncaught Core\Exceptions\PageNotFoundException: Resource '/favicon.ico', was not found! in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php\php-mvc\public\index.php(40): Core\Dispatcher->handle('/favicon.ico')
+#1 {main}
+  thrown in C:\xampp\htdocs\php\php-mvc\src\Core\Dispatcher.php on line 25
