@@ -21,7 +21,7 @@ class ExceptionHandler
 
   public static function exception($exception): void
   {
-    $show_errors = $_ENV["SHOW_ERROR"] ?? true;
+    $show_errors = $_ENV["SHOW_ERROR"];
     $viewer = new Viewer();
 
     if ($exception instanceof PageNotFoundException) {
@@ -43,19 +43,17 @@ class ExceptionHandler
       # Development
       ini_set("display_errors", 1);
       ini_set("log_errors", 0);
+      throw $exception;
     } else {
       # Production
       ini_set("display_errors", 0);
       ini_set("log_errors", 1);
       ini_set("error_log", dirname(__DIR__, 2) . "/logs/errors.log");
 
-      echo $viewer->render("shared/header", [
-        "title" => "Error | {$code} status code",
-      ]);
+      echo $viewer->render("shared/header", ["title" => "Error | {$code} status code"]);
       echo $viewer->render($view, ["status_code" => $code]);
       echo $viewer->render("shared/footer");
+      exit();
     }
-
-    throw $exception;
   }
 }
