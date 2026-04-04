@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Core;
 
 use Core\Exceptions\PageNotFoundException;
-use Core\Exceptions\UrlMailformedException;
+use Core\Exceptions\UrlMalformedException;
 use ErrorException;
 
 class ExceptionHandler
@@ -32,7 +32,7 @@ class ExceptionHandler
       $code = 500;
     }
 
-    if ($exception instanceof UrlMailformedException) {
+    if ($exception instanceof UrlMalformedException) {
       $view = "malformed-url";
       $code = 400;
     }

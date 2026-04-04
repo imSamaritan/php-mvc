@@ -24,7 +24,7 @@ $url_path = parse_url($_SERVER["REQUEST_URI"], 5);
 
 # Check if the url is malformed
 if ($url_path === false) {
-  throw new Core\Exceptions\UrlMailformedException("URL is malformed!!");
+  throw new Core\Exceptions\UrlMalformedException("URL is malformed!");
 }
 
 # Router
