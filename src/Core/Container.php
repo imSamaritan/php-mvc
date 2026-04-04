@@ -11,6 +11,7 @@ use InvalidArgumentException;
 class Container
 {
   private array $registry = [];
+  private array $resolved = [];
 
   public function save(string $key, Closure $value): void
   {
@@ -19,8 +20,13 @@ class Container
 
   public function get(string $class): object
   {
-    if (array_key_exists($class, $this->registry)) {
-      return $this->registry[$class]();
+    if (isset($this->resolved[$class])) {
+      return $this->resolved[$class];
+    }
+
+    if (isset($this->registry[$class])) {
+      $this->resolved[$class] = $this->registry[$class]();
+      return $this->resolved[$class];
     }
 
     $dependencies = [];
@@ -37,15 +43,21 @@ class Container
       $type = $dependency->getType();
 
       if ($type === null) {
-        throw new InvalidArgumentException("Constructor '{$class}' can not resolve a parameter with a 'NULL' type!");
+        throw new InvalidArgumentException(
+          "Constructor '{$class}' can not resolve a parameter with a 'NULL' type!",
+        );
       }
 
       if (!$type instanceof ReflectionNamedType) {
-        throw new InvalidArgumentException("Constructor '{$class}' can not resolve a parameter with type '{$type}', only ReflectionNamedTypes are allowed.");
+        throw new InvalidArgumentException(
+          "Constructor '{$class}' can not resolve a parameter with type '{$type}', only ReflectionNamedTypes are allowed.",
+        );
       }
 
       if ($type->isBuiltin()) {
-        throw new InvalidArgumentException("Constructor '{$class}' can resolve a built in type '{$type}', consider using a registry for type of constructor!");
+        throw new InvalidArgumentException(
+          "Constructor '{$class}' can resolve a built in type '{$type}', consider using a registry for type of constructor!",
+        );
       }
 
       $dependencies[] = $this->get((string) $type);
