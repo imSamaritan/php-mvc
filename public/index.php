@@ -6,7 +6,7 @@ declare(strict_types=1);
 define("ROOT_PATH", dirname(__DIR__, 1));
 
 #Load modules
-require ROOT_PATH . "/src/autoload.php";
+require_once ROOT_PATH . "/src/autoload.php";
 
 # Throw errors as exception
 set_error_handler("Core\ExceptionHandler::error");
