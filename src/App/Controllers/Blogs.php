@@ -19,7 +19,7 @@ class Blogs
     echo $this->viewer->render("shared/footer");
   }
 
-  public function show(int $id = 1): void
+  public function show(int $id): void
   {
     $blog = $this->blog->find($id);
 
