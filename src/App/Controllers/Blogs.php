@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Models\Blog;
+use Core\Exceptions\PageNotFoundException;
 use Core\Viewer;
 
 class Blogs
@@ -22,6 +23,10 @@ class Blogs
   public function show(int $id): void
   {
     $blog = $this->blog->find($id);
+    
+    if ($blog === false) {
+      throw new PageNotFoundException("Resource with an id '{$id}', was not found!");
+    }
 
     echo $this->viewer->render("shared/header", [
       "title" => "Blog #{$blog->id}",
