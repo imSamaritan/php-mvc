@@ -4,7 +4,7 @@ A list of all identified bugs in the php-mvc project that need to be resolved.
 
 ---
 
-## 🐛 Bug #1 — `Dispatcher::getControllerName` mutates instance state
+## ✅ Bug #1 — `Dispatcher::getControllerName` mutates instance state [FIXED]
 
 **File:** `src/Core/Dispatcher.php`
 
@@ -30,7 +30,7 @@ return $namespace . "\\" . $controller_name;
 
 ---
 
-## 🐛 Bug #2 — `ExceptionHandler` re-throws exception after rendering in production
+## ✅ Bug #2 — `ExceptionHandler` re-throws exception after rendering in production [FIXED]
 
 **File:** `src/Core/ExceptionHandler.php`
 
@@ -81,7 +81,7 @@ $show_errors = ($_ENV["SHOW_ERROR"] ?? "true") !== "false";
 
 ---
 
-## 🐛 Bug #4 — `DotEnv::load` crashes on empty lines and comment lines
+## ✅ Bug #4 — `DotEnv::load` crashes on empty lines and comment lines [FIXED]
 
 **File:** `src/Core/DotEnv.php`
 
@@ -147,7 +147,7 @@ public function show(int $id = 1): void
 
 ---
 
-## 🐛 Bug #6 — `autoload.php` uses `require` instead of `require_once`
+## ✅ Bug #6 — `autoload.php` uses `require` instead of `require_once` [FIXED]
 
 **File:** `src/autoload.php`
 
@@ -216,7 +216,7 @@ $params = array_filter($matches, "is_string", ARRAY_FILTER_USE_KEY);
 
 ---
 
-## 🐛 Bug #9 — `Container` registry always creates a new instance (no singleton caching)
+## ✅ Bug #9 — `Container` registry always creates a new instance (no singleton caching) [FIXED]
 
 **File:** `src/Core/Container.php`
 
@@ -251,7 +251,7 @@ public function get(string $class): object
 
 ---
 
-## 🐛 Bug #10 — Typo in class name: `UrlMailformedException`
+## ✅ Bug #10 — Typo in class name: `UrlMailformedException` [FIXED]
 
 **File:** `src/Core/Exceptions/UrlMailformedException.php`
 

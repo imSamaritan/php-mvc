@@ -70,9 +70,9 @@ class Dispatcher
     $controller_name = strtolower($params["controller"]);
     $controller_name = ucwords($controller_name, "-");
     $controller_name = str_replace("-", "", $controller_name);
-    
+
     $namespace = $this->namespace;
-    
+
     if (isset($params["namespace"])) {
       $namespace .= "\\" . ucwords($params["namespace"]);
     }
@@ -92,6 +92,15 @@ class Dispatcher
     foreach ($parameters as $parameter) {
       $arg_name = $parameter->getName();
       $arg_type = $parameter->getType();
+
+      if (!isset($params[$arg_name])) {
+        if ($parameter->getDefaultValue()) {
+          $args[$arg_name] = $parameter->getDefaultValue();
+          continue;
+        }
+        throw new RuntimeException("Missing a route parameter '{$arg_name}'!");
+      }
+
       $args[$arg_name] = $this->typeCastAndReturnValue(
         $arg_type,
         $params[$arg_name],
