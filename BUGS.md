@@ -61,7 +61,7 @@ if ($show_errors) {
 
 ---
 
-## 🐛 Bug #3 — `SHOW_ERROR` env variable string `"false"` is truthy
+## ✅ Bug #3 — `SHOW_ERROR` env variable string `"false"` is truthy [FIXED]
 
 **File:** `src/Core/ExceptionHandler.php`
 
@@ -78,6 +78,8 @@ Perform an explicit string comparison:
 ```php
 $show_errors = ($_ENV["SHOW_ERROR"] ?? "true") !== "false";
 ```
+
+**Note:** Fixed by creating a `Utility::getShowError()` helper method that properly handles string-to-boolean conversion. The env variable is now `SHOW_ERRORS` (plural).
 
 ---
 
@@ -112,7 +114,7 @@ foreach ($file_lines as $line) {
 
 ---
 
-## 🐛 Bug #5 — `Blogs::show` does not handle a missing blog
+## ✅ Bug #5 — `Blogs::show` does not handle a missing blog [FIXED]
 
 **File:** `src/App/Controllers/Blogs.php`
 
@@ -166,7 +168,7 @@ require_once dirname(__DIR__) . "/src/{$module}.php";
 
 ---
 
-## 🐛 Bug #7 — `Home` controller manually instantiates `Viewer` instead of injecting it
+## ✅ Bug #7 — `Home` controller manually instantiates `Viewer` instead of injecting it [FIXED]
 
 **File:** `src/App/Controllers/Home.php`
 
@@ -293,3 +295,5 @@ if (!array_key_exists($arg_name, $params)) {
 }
 $args[$arg_name] = $this->typeCastAndReturnValue($arg_type, $params[$arg_name]);
 ```
+
+**Note:** The implementation checks for missing params and attempts to use default values, but should use `isDefaultValueAvailable()` before calling `getDefaultValue()` to avoid potential errors.
