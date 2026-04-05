@@ -189,7 +189,7 @@ public function __construct(private Viewer $viewer) {}
 
 ---
 
-## 🐛 Bug #8 — Magic numbers used instead of named constants
+## ✅ Bug #8 — Magic numbers used instead of named constants [FIXED]
 
 **Files:** `public/index.php`, `src/Core/Router.php`
 
@@ -266,7 +266,7 @@ Rename the file and class from `UrlMailformedException` to `UrlMalformedExceptio
 
 ---
 
-## 🐛 Bug #11 — `Dispatcher::getMethodArgs` does not guard against missing route params
+## ✅ Bug #11 — `Dispatcher::getMethodArgs` does not guard against missing route params [FIXED]
 
 **File:** `src/Core/Dispatcher.php`
 
