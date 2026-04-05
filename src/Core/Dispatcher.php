@@ -94,7 +94,7 @@ class Dispatcher
       $arg_type = $parameter->getType();
 
       if (!isset($params[$arg_name])) {
-        if ($parameter->getDefaultValue()) {
+        if ($parameter->isDefaultValueAvailable()) {
           $args[$arg_name] = $parameter->getDefaultValue();
           continue;
         }
