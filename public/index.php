@@ -20,7 +20,7 @@ $dotEnv = new Core\DotEnv();
 $dotEnv->load(ROOT_PATH . "/.env");
 
 #Get url path
-$url_path = parse_url($_SERVER["REQUEST_URI"], 5);
+$url_path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 # Check if the url is malformed
 if ($url_path === false) {
