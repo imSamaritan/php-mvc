@@ -20,7 +20,7 @@ class Router
     foreach ($this->routes as $route) {
       $pattern = $this->createMatchPattern($route["path"]);
       if (preg_match($pattern, $url_path, $matches)) {
-        $params = array_filter($matches, "is_string", 2); //2 ARRRAY_FILTER_USE_KEY
+        $params = array_filter($matches, "is_string", ARRAY_FILTER_USE_KEY);
         $params = array_merge($params, $route["params"]);
         return $params;
       }
