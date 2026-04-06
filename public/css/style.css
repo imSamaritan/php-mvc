@@ -13,3 +13,17 @@ body * {
   margin: 0;
   box-sizing: border-box;
 }
+
+div.field {
+  display: block;
+  margin: 5px 0;
+}
+
+label {
+  display: block;
+  padding-bottom: 2px;
+}
+
+button {
+  cursor: pointer;
+}

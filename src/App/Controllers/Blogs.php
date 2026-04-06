@@ -28,10 +28,18 @@ class Blogs
       throw new PageNotFoundException("Resource with an id '{$id}', was not found!");
     }
 
-    echo $this->viewer->render("shared/header", [
-      "title" => "Blog #{$blog->id}",
-    ]);
+    echo $this->viewer->render("shared/header", ["title" => "Blog #{$blog->id}"]);
     echo $this->viewer->render("blogs/show", ["blog" => $blog]);
+    echo $this->viewer->render("shared/footer");
+  }
+  
+  public function create() {
+    if (isset($_POST["submit"])) {
+      unset($_POST["submit"]);
+      $create_response = $this->blog->create($_POST);
+    }
+    echo $this->viewer->render("shared/header", ["title" => "Create post"]);
+    echo $this->viewer->render("blogs/create");
     echo $this->viewer->render("shared/footer");
   }
 }

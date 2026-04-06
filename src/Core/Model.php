@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Core;
 use App\Database;
+use PDO;
 
 class Model
 {
@@ -24,7 +25,7 @@ class Model
   {
     $table = $this->getTable();
     $connection = $this->db->connect();
-    
+
     $sql = "SELECT * FROM {$table}";
     $statement = $connection->prepare($sql);
 
@@ -39,7 +40,7 @@ class Model
   {
     $table = $this->getTable();
     $connection = $this->db->connect();
-    
+
     $sql = "SELECT * FROM {$table} WHERE id = :id";
     $statement = $connection->prepare($sql);
 
@@ -48,5 +49,35 @@ class Model
     }
 
     return false;
+  }
+
+  public function create(array $data)
+  {
+    $table = $this->getTable();
+    $connection = $this->db->connect();
+
+    $columns = implode(",", array_keys($data));
+    $placeholders = implode(",", array_map(fn() => "?", array_keys($data)));
+
+    $sql = "INSERT INTO {$table}({$columns}) VALUES({$placeholders})";
+    $stmt = $connection->prepare($sql);
+
+    $i = 1;
+    foreach ($data as $value) {
+      $type = gettype($value);
+      $pdoType = match ($type) {
+        "int" => PDO::PARAM_INT,
+        "bool" => PDO::PARAM_BOOL,
+        "null" => PDO::PARAM_NULL,
+        default => PDO::PARAM_STR,
+      };
+      $stmt->bindValue($i++, $value, $pdoType);
+    }
+
+    if ($stmt->execute()) {
+      return ["response" => true];
+    } else {
+      return ["response" => false];
+    }
   }
 }
