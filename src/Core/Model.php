@@ -8,6 +8,8 @@ use PDO;
 class Model
 {
   protected ?string $table = null;
+  protected array $errors = [];
+
   public function __construct(private Database $db) {}
 
   private function getTable()
@@ -20,6 +22,24 @@ class Model
 
     return $this->table;
   }
+
+  protected function addError(string $field, string $message): void
+  {
+    $this->errors[$field] = $message;
+  }
+
+  public function getError(): array
+  {
+    return $this->errors;
+  }
+  
+  private function getId(): int 
+  {
+    $connection = $this->db->connect();
+    return (int) $connection->lastInsertId();
+  }
+  
+  protected function validate(array $data): void {}
 
   public function findAll(): array|false
   {
@@ -51,8 +71,12 @@ class Model
     return false;
   }
 
-  public function create(array $data)
+  public function create(array $data): int|bool
   {
+    $this->validate($data);
+    if (! empty($this->errors)) return false;
+  
+
     $table = $this->getTable();
     $connection = $this->db->connect();
 
@@ -75,9 +99,9 @@ class Model
     }
 
     if ($stmt->execute()) {
-      return ["response" => true];
+      return $this->getId();
     } else {
-      return ["response" => false];
+      return false;
     }
   }
 }
