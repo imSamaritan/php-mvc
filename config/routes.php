@@ -9,9 +9,8 @@ $router = new Core\Router();
 // Home
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/{controller:home|blogs}", ["action" => "index"]);
-// Dynamic
 $router->add("/{controller}/{action}/{id:\d+}");
-$router->add("/{controller}/{action}", ["namespace" => "role",]);
+$router->add("/{controller:moderator}/{action}", ["namespace" => "role"]);
 $router->add("/{controller}/{action}");
 
 return $router;
