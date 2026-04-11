@@ -14,9 +14,10 @@ class Blogs
   public function index(): void
   {
     $blogs = $this->blog->findAll();
-
+    $recordsCount = $this->blog->recordsCount();
+    
     echo $this->viewer->render("shared/header", ["title" => "Blogs"]);
-    echo $this->viewer->render("blogs/index", ["blogs" => $blogs]);
+    echo $this->viewer->render("blogs/index", ["blogs" => $blogs, "recordsCount" => $recordsCount]);
     echo $this->viewer->render("shared/footer");
   }
 

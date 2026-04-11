@@ -10,9 +10,9 @@ class Model
   protected ?string $table = null;
   protected array $errors = [];
 
-  public function __construct(private Database $db) {}
+  public function __construct(protected Database $db) {}
 
-  private function getTable()
+  protected function getTable()
   {
     if ($this->table === null) {
       $table_name_array = explode("\\", $this::class);

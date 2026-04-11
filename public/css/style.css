@@ -33,3 +33,18 @@ small {
 button {
   cursor: pointer;
 }
+
+.card {
+  background-color: #444;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+a {
+  color: ghostwhite;
+  text-decoration: none;
+}
+
+.card-body {
+  padding: 10px 5px;
+}
