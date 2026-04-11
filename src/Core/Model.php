@@ -104,4 +104,40 @@ class Model
       return false;
     }
   }
+  
+  public function update(int $id, array $data) 
+  {
+    $this->validate($data);
+    if (! empty($this->errors)) return false;
+    
+    $connection = $this->db->connect();
+    $table = $this->getTable();
+    
+    $fields = array_keys($data);
+    $fields = array_map(fn($field) => "{$field} = ?", $fields);
+    $fields = implode(",", $fields);
+    
+    $sql = "UPDATE {$table} SET {$fields} WHERE id = ?";
+    $stmt = $connection->prepare($sql);
+      
+    $i = 1;
+    foreach ($data as $value) {
+      $type = gettype($value);
+      $pdoType = match ($type) {
+        "int" => PDO::PARAM_INT,
+        "bool" => PDO::PARAM_BOOL,
+        "null" => PDO::PARAM_NULL,
+        default => PDO::PARAM_STR,
+      };
+      $stmt->bindValue($i++, $value, $pdoType);
+    }
+    
+    $stmt->bindValue($i, $id, PDO::PARAM_INT);
+    
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

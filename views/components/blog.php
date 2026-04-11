@@ -13,7 +13,7 @@
       <a href="/blogs/show/<?php echo $blog->id ?>">Read more...</a>
     <?php else: ?>
       <a href="/blogs">Go back</a>
-      <a href="">Edit</a>
+      <a href="/blogs/edit/<?php echo $blog->id ?>">Edit</a>
       <a href="">Delete</a>
     <?php endif ?>
   </div>

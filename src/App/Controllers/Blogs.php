@@ -15,9 +15,12 @@ class Blogs
   {
     $blogs = $this->blog->findAll();
     $recordsCount = $this->blog->recordsCount();
-    
+
     echo $this->viewer->render("shared/header", ["title" => "Blogs"]);
-    echo $this->viewer->render("blogs/index", ["blogs" => $blogs, "recordsCount" => $recordsCount]);
+    echo $this->viewer->render("blogs/index", [
+      "blogs" => $blogs,
+      "recordsCount" => $recordsCount,
+    ]);
     echo $this->viewer->render("shared/footer");
   }
 
@@ -43,12 +46,11 @@ class Blogs
     if (isset($_POST["submit"])) {
       unset($_POST["submit"]);
       $postID = $this->blog->create($_POST);
-      
+
       if ($postID) {
         header("Location: /blogs/show/{$postID}");
         exit();
-      }
-      else {
+      } else {
         $error = $this->blog->getError();
         echo $this->viewer->render("shared/header", ["title" => "Create post"]);
         echo $this->viewer->render("blogs/create", ["error" => $error]);
@@ -58,6 +60,39 @@ class Blogs
     } else {
       echo $this->viewer->render("shared/header", ["title" => "Create post"]);
       echo $this->viewer->render("blogs/create");
+      echo $this->viewer->render("shared/footer");
+    }
+  }
+
+  public function edit(int $id): void
+  {
+    $blog = $this->blog->find($id);
+    
+    if (isset($_POST["submit"])) {
+      unset($_POST["submit"]);
+      $update = $this->blog->update($id, $_POST);
+      
+      if ($update) {
+        header("Location: /blogs/show/{$id}");
+      } 
+      else {
+        $errors = $this->blog->getError();
+        $blog = (object) $_POST;
+        
+        echo $this->viewer->render("shared/header", ["title" => "Edit"]);
+        echo $this->viewer->render("blogs/edit", ["error" => $errors, "id" => $id, "blog" => $blog]);
+        echo $this->viewer->render("shared/footer");
+      }
+    } 
+    else {
+      if ($blog === false) {
+        throw new PageNotFoundException(
+          "Resource with an id '{$id}', was not found!",
+        );
+      }
+      
+      echo $this->viewer->render("shared/header", ["title" => "Edit"]);
+      echo $this->viewer->render("blogs/edit", ["id" => $id, "blog" => $blog]);
       echo $this->viewer->render("shared/footer");
     }
   }
