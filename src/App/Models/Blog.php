@@ -20,4 +20,15 @@ class Blog extends Model
       $this->addError("body", "Post body is required!");
     }
   }
+  
+  public function recordsCount(): int
+  {
+    $connection = $this->db->connect();
+    
+    $sql = "SELECT COUNT(*) AS records_count FROM {$this->getTable()}";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute();
+    
+    return (int) $stmt->fetch()->records_count;
+  }
 }
