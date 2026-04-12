@@ -12,7 +12,7 @@ class Router
     $this->routes[] = ["path" => $path, "params" => $params];
   }
 
-  public function match(string $url_path): array|false
+  public function match(string $url_path, string $http_method): array|false
   {
     $url_path = strtolower($url_path);
     $url_path = trim($url_path, "/");
@@ -22,6 +22,12 @@ class Router
       if (preg_match($pattern, $url_path, $matches)) {
         $params = array_filter($matches, "is_string", ARRAY_FILTER_USE_KEY);
         $params = array_merge($params, $route["params"]);
+        
+        if (isset($params["method"])) {
+          if (strtolower($http_method) !== strtolower($params["method"])) {
+            continue;
+          }
+        }
         return $params;
       }
     }
