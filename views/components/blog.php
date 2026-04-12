@@ -14,7 +14,7 @@
     <?php else: ?>
       <a href="/blogs">Go back</a>
       <a href="/blogs/edit/<?php echo $blog->id ?>">Edit</a>
-      <a href="">Delete</a>
+      <a href="/blogs/delete/<?php echo $blog->id ?>">Delete</a>
     <?php endif ?>
   </div>
 </div>
