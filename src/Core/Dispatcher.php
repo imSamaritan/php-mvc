@@ -16,10 +16,10 @@ class Dispatcher
     private Router $router,
     private Container $container,
   ) {}
-  public function handle(string $url_path): void
+  public function handle(string $url_path, string $http_method): void
   {
     #Matching incoming route path against the application routes
-    $params = $this->router->match($url_path);
+    $params = $this->router->match($url_path, $http_method);
 
     if ($params === false) {
       throw new PageNotFoundException("Resource '{$url_path}', was not found!");

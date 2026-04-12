@@ -37,4 +37,4 @@ $container = require ROOT_PATH . "/config/services.php";
 $dispatcher = new Core\Dispatcher($router, $container);
 
 #handle requests
-$dispatcher->handle($url_path);
+$dispatcher->handle($url_path, $_SERVER["REQUEST_METHOD"]);
