@@ -140,4 +140,17 @@ class Model
       return false;
     }
   }
+  
+  protected function delete(int $id): bool 
+  {
+    $connection = $this->db->connect();
+    $table = $this->getTable();
+    
+    $sql = "DELETE FROM {$table} WHERE id = ?";
+    $stmt = $connection->prepare($sql);
+    
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
+    
+    return $stmt->execute();
+  }
 }

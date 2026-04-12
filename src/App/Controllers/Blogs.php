@@ -96,4 +96,18 @@ class Blogs
       echo $this->viewer->render("shared/footer");
     }
   }
+  
+  public function delete(int $id): void 
+  {
+    if (isset($_POST["delete"])) {
+      $delete = $this->blog->deletePost((int) $id);
+      
+      if ($delete) header("Location: /blogs");
+      else header("Location: /blogs/show/{$id}");
+    }
+    
+    echo $this->viewer->render("shared/header", ["title" => "Delete blog #{$id}"]);
+    echo $this->viewer->render("blogs/delete", ["id" => $id]);
+    echo $this->viewer->render("shared/footer");
+  }
 }

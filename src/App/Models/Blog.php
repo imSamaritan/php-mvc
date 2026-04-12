@@ -31,4 +31,9 @@ class Blog extends Model
     
     return (int) $stmt->fetch()->records_count;
   }
+  
+  public function deletePost(int $id): bool 
+  {
+    return $this->delete($id);
+  }
 }
